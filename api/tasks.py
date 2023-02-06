@@ -9,7 +9,7 @@ from .update_fuck import update_db_data
 
 @shared_task
 def parser_task():
-    # print('start task')
+    print('start task')
     # print('start Chrome driver')
     #DOCKER driver
     driver = Remote(

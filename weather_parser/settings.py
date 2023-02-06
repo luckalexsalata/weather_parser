@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_celery_beat',
     'api',
 ]
 
@@ -154,11 +155,13 @@ CACHES = {
         }
     }
 }
-from datetime import timedelta
+
+timezone = 'Europe/Kiev'
+
 CELERY_BEAT_SCHEDULE = {
     "sample_task": {
         "task": "api.tasks.parser_task",
-        # "schedule": crontab(hour=7),
-        "schedule": timedelta(seconds=30),
+        "schedule": crontab(hour=9, minute=0, day_of_week='*'),
+        # "schedule": timedelta(seconds=30),   # простіше перевіряти
     },
 }

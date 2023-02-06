@@ -26,8 +26,6 @@ services:
     command: python3 manage.py runserver 0.0.0.0:8080
     ports:
       - "8080:8080"
-#    volumes:
-#      - .:/weather_parser
     environment:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
@@ -37,6 +35,7 @@ services:
       - redis
     links:
       - selenium
+    entrypoint: /entrypoint.sh  # start migration
 
 
   celery_worker:
@@ -54,11 +53,15 @@ services:
 
   celery_beat:
     build: ./
-    command: celery -A weather_parser beat -l info
+    command: celery -A weather_parser beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler --max-interval 10
     container_name: celery_beat
     depends_on:
       - redis
       - weather_parser
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     restart: on-failure
 
 
@@ -68,9 +71,6 @@ services:
     command: celery -A weather_parser flower --port=5555
     ports:
       - "5555:5555"
-    environment:
-      - CELERY_BROKER_URL=redis://redis:6379/2
-      - FLOWER_PORT=5555
     depends_on:
       - redis
       - celery_worker

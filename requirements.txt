@@ -5,6 +5,7 @@ djangorestframework==3.12.4
 requests==2.27.1
 django-redis==5.2.0
 celery==5.1.2
+django-celery-beat
 psycopg2==2.9.5
 selenium==3.8.0
 beautifulsoup4==4.11.2

@@ -11,4 +11,7 @@ RUN pip install -r requirements.txt
 
 ADD . /weather_parser/
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
