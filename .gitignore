@@ -1,0 +1,11 @@
+.idea/
+
+*.pyc
+__pycache__
+celerybeat-schedule
+
+# db files
+data
+staticfiles
+db.sqlite3
+
