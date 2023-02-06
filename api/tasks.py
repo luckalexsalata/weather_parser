@@ -3,7 +3,7 @@ from selenium.webdriver import Chrome, ChromeOptions, Remote
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import datetime
 from bs4 import BeautifulSoup
-from .update_fuck import update_db_data
+from .update_funck import update_db_data
 # from .models import Weather
 
 

@@ -1,5 +1,5 @@
 ## Installation
-You can run a demo of the app with Docker and Docker Compose:
+You can run a demo of the app with Docker Compose:
 
 ```bash
 docker-compose up --build
